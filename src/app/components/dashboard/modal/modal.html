@@ -1,0 +1,45 @@
+@if (visible()) {
+  <div id="form-modal" class="fixed inset-0 z-40 flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/40" data-modal-backdrop></div>
+        <div class="relative bg-white rounded-lg shadow-lg w-full max-w-2xl mx-4 p-6 z-50">
+          <div class="flex items-start justify-between mb-4">
+            
+            <h3 class="text-lg font-semibold">
+              {{ dadosTask?.id ? 'Editar Tarefa' : 'Nova Tarefa' }}
+            </h3>
+
+            <button id="close-form-btn" class="text-slate-500 hover:text-slate-800 cursor-pointer"
+            (click)="hiddenModal()">✕</button>
+          </div>
+
+          <form (ngSubmit)="savingTask()" id="task-form" class="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+            <div>
+              <label class="text-sm text-slate-700">Título</label>
+              <input id="title" [(ngModel)]="dadosTask.title" name="title" required class="w-full mt-1 p-2 border rounded" />
+               
+            </div>
+            <div>
+              <label class="text-sm text-slate-700">Data término</label>
+              <input id="due" [(ngModel)]="dadosTask.due" name="due" type="date" required class="w-full mt-1 p-2 border rounded" />
+            </div>
+            <div>
+              <label class="text-sm text-slate-700">Nível</label>
+              <select id="level" [(ngModel)]="dadosTask.level" name="level" class="w-full mt-1 p-2 border rounded">
+                <option value="low">Baixo</option>
+                <option value="medium">Médio</option>
+                <option value="high">Alto</option>
+              </select>
+            </div>
+            <div class="md:col-span-3">
+              <label class="text-sm text-slate-700">Descrição (breve)</label>
+              <textarea id="desc" [(ngModel)]="dadosTask.desc" name="desc" rows="2" class="w-full mt-1 p-2 border rounded"></textarea>
+            </div>
+            <div class="md:col-span-3 text-right">
+              <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 cursor-pointer" 
+               type="submit">Salvar tarefa
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    }

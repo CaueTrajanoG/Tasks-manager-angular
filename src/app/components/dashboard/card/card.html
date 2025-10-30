@@ -1,0 +1,14 @@
+<div class="mb-4 p-3 border border-slate-300 rounded-lg shadow-sm bg-slate-100 hover:bg-slate-300 transition cursor-move  ">
+  <h3 class="font-semibold">{{ task.title }}</h3>
+  <p class="text-sm text-gray-600">{{ task.desc }}</p>
+  <p class="text-xs text-gray-500">Vence: {{ task.due }}</p>
+  <span class="inline-block mt-2 text-xs px-2 py-1 rounded bg-gray-300">
+    {{ task.level }}
+  </span>
+  <div class="text-right">
+          <button class="text-xs text-white mr-2 btn-edit bg-slate-500 hover:bg-slate-700 p-1 rounded-full cursor-pointer"
+          (click)="editTask()">Editar</button>
+          <button class="text-xs p-1 rounded-full text-white btn-del bg-slate-500 hover:bg-slate-700 cursor-pointer"
+          (click)="deleteTask()">Excluir</button>
+        </div>
+</div>

@@ -1,0 +1,7 @@
+[cdkDrag] {
+  cursor: grab;
+}
+[cdkDragDragging] {
+  opacity: 0.7;
+  cursor: grabbing;
+}
