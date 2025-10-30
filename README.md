@@ -1,59 +1,43 @@
-# TaskAppManager
+# 📝 Tasks Manager - Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+Um gerenciador de tarefas simples e intuitivo feito em **Angular 19**, utilizando **Signals** e **CDK Drag & Drop**.  
+Ideal para organizar estudos, tarefas diárias e acompanhar o progresso das atividades.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Funcionalidades
 
+✅ Criar novas tarefas com título, descrição, prioridade e data de entrega  
+✅ Editar e excluir tarefas  
+✅ Arrastar e soltar tarefas entre colunas (“Para fazer”, “Em progresso”, “Concluídas”)  
+✅ Dados salvos no **LocalStorage**  
+✅ Interface responsiva e moderna (TailwindCSS)  
+✅ Estrutura reativa com **Angular Signals**
+
+---
+
+## 🧠 Tecnologias utilizadas
+
+- [Angular 20.3.7.](https://angular.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Angular CDK DragDrop](https://material.angular.io/cdk/drag-drop/overview)
+- [LocalStorage API](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
+
+---
+
+## ⚙️ Como executar o projeto
+
+### 1️⃣ Clonar o repositório
 ```bash
-ng serve
-```
+git clone https://github.com/CaueTrajanoG/Tasks-manager-angular.git
+cd Tasks-manager-angular
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+2️⃣ Instalar as dependências -> npm install
 
-## Code scaffolding
+3️⃣ Executar o servidor de desenvolvimento  ->npx ng serve
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+🧑‍💻 Autor
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Caue Trajano
+💼 GitHub
