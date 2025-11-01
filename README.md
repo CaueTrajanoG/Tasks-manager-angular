@@ -1,6 +1,6 @@
 # 📝 Tasks Manager - Angular
 
-Um gerenciador de tarefas simples e intuitivo feito em **Angular 19**, utilizando **Signals** e **CDK Drag & Drop**.  
+Um gerenciador de tarefas simples e intuitivo feito em **Angular 20**, utilizando **Signals** e **CDK Drag & Drop**.  
 Ideal para organizar estudos, tarefas diárias e acompanhar o progresso das atividades.
 
 ---
