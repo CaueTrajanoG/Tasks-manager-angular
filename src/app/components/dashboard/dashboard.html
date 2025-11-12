@@ -1,5 +1,4 @@
-<div class="mx-auto max-w-6xl gap-x-4 rounded-xl border border-slate-300 bg-white p-8 shadow-lg outline 
-outline-black/5  dark:shadow-none dark:-outline-offset-1 dark:outline-white/10" >
+<div class="rounded-xl bg-white p-8 " >
   
   <!--cabeçalho-->
   <div class="mb-6 flex items-center justify-between">
@@ -13,15 +12,15 @@ outline-black/5  dark:shadow-none dark:-outline-offset-1 dark:outline-white/10" 
   </div>
     
   <!--grid de cards-->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-x-6">             
-        <div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-x-6 items-stretch">             
+        <div class="flex flex-col">
           <h2 class="font-semibold mb-2">Para fazer</h2>
           <div id="col-todo" class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm" data-status="todo"
             cdkDropList
             id="todoList"
             [cdkDropListData]="getTasksByStatus('todo')"
             [cdkDropListConnectedTo]="['doingList', 'doneList']"
-            class="bg-gray-50 p-3 rounded shadow"
+            class="bg-gray-300 h-full p-3 rounded shadow"
             (cdkDropListDropped)="onDrop($event, 'todo')">
 
             @for (task of getTasksByStatus('todo'); track task.id) {
@@ -30,16 +29,14 @@ outline-black/5  dark:shadow-none dark:-outline-offset-1 dark:outline-white/10" 
           </div>
         </div>
 
-        <div>
-
+        <div class="flex flex-col">
           <h2 class="font-semibold mb-2">Em progresso</h2>
-          <div id="col-done" class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm" data-status="done"
-          
+          <div id="col-done" class="space-y-3 p-3 bg-white rounded shadow-sm" data-status="done"          
             cdkDropList
             id="doingList"
             [cdkDropListData]="getTasksByStatus('doing')"
             [cdkDropListConnectedTo]="['todoList', 'doneList']"
-            class="bg-gray-50 p-3 rounded shadow"
+            class="h-full bg-gray-300 p-3 rounded shadow"
             (cdkDropListDropped)="onDrop($event, 'doing')"
             >
             @for (task of getTasksByStatus('doing'); track task.id) {
@@ -48,8 +45,7 @@ outline-black/5  dark:shadow-none dark:-outline-offset-1 dark:outline-white/10" 
           </div>
         </div>
 
-
-        <div>
+        <div class="flex flex-col">
           <h2 class="font-semibold mb-2">Concluídas</h2>
           <div id="col-done" class="space-y-3 min-h-[200px] p-3 bg-white rounded shadow-sm" data-status="done"
           
@@ -57,7 +53,7 @@ outline-black/5  dark:shadow-none dark:-outline-offset-1 dark:outline-white/10" 
           [cdkDropListData]="getTasksByStatus('done')"
           id="doneList"
           [cdkDropListConnectedTo]="['todoList', 'doingList']"
-          class="bg-gray-50 p-3 rounded shadow"
+          class="h-full bg-gray-300 p-3 rounded shadow"
           (cdkDropListDropped)="onDrop($event, 'done')"
         >
             @for (task of getTasksByStatus('done'); track task.id) {
