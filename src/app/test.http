@@ -19,3 +19,21 @@ Content-Type: application/json
     "description": "Projeto prioritário de angular!",
     "status": "todo"
 }
+### PUT
+PUT {{ endpoint }}?id=eq.1
+apikey: {{ apiKey }}
+Authorization: Bearer {{ apiKey }}
+Content-Type: application/json
+
+{
+    "status": "done"
+}
+### PATCH
+PATCH {{ endpoint }}?id=eq.1
+apikey: {{ apiKey }}
+Authorization: Bearer {{ apiKey }}
+Content-Type: application/json
+
+{
+    "status": "doing"
+}

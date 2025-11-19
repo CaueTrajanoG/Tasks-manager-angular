@@ -21,20 +21,22 @@ export class DataService {
       'Content-Type': 'application/json',
       Prefer: 'return=representation'
     };
-  }  
+  }
+
   //Get para buscar lista de tasks
   getTasks(): Observable<Task[]> {
     return this.apiClient.get<Task[]>(this._apiUrl, {headers: this.headers()})
     .pipe(
       catchError(this.handleError)
     )
-
   }  
   
   //Post para criar novos registros
   postTasks(task: Task){
     console.log(task)
-    return  this.apiClient.post(this._apiUrl, task, { headers: this.headers() })
+    return  this.apiClient.post(this._apiUrl, task, { 
+      headers: this.headers() 
+    })
     .pipe(
       catchError(this.handleError)
     )
@@ -42,7 +44,7 @@ export class DataService {
 
   //Tratando erros
   private handleError(error: HttpErrorResponse): Observable<never> {
-    console.error("🔥 ERRO NA API SUPABASE:");
+    console.error("ERRO NA API SUPABASE:");
     console.error("Status:", error.status);
     console.error("Mensagem:", error.message);
     console.error("Body:", error.error);

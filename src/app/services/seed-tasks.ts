@@ -59,11 +59,6 @@ export class SeedTasks {
   addTask(newTask: creatingTask) {
     this.data.postTasks(newTask);
     console.log(newTask);
-    //const novaTask = { ...newTask, id: this.uid() };
-    //this.allTasks.update(tasks => {
-     // const updated = [...tasks, novaTask];
-     // this.saveToStorage(updated);
-     // return updated;})
   }
 
   deleteTask(id: number) {
@@ -74,6 +69,7 @@ export class SeedTasks {
       return updated;
     });
   }
+
   updateTask(task: Task) {
     this.allTasks.update(tasks => {
       const updated = tasks.map(t => (t.id === task.id ? task : t));
@@ -81,6 +77,7 @@ export class SeedTasks {
       return updated;
     });
   }
+  
   updatingTask(updatedTask: Task) {
     this.allTasks.update(tasks =>
       tasks.map(t => (t.id === updatedTask.id ? updatedTask : t))
