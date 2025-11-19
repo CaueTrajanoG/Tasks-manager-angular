@@ -24,7 +24,7 @@ export class Modal {
       this.dadosTask =  { ...dadosTask}
       this.creating.set(false);
     }else{
-      this.dadosTask = { id: null, title: '', desc: '', status: 'todo' };
+      this.dadosTask = { id: null, title: '', description: '', status: 'todo' };
       this.creating.set(true);
     }    
     this.visible.set(true);    
@@ -32,7 +32,7 @@ export class Modal {
 
   hiddenModal(){
     this.visible.set(false);
-    this.dadosTask = { id: null, title: '', desc: '', status: 'todo' };
+    this.dadosTask = { id: null, title: '', description: '', status: 'todo' };
   }
 
   savingTask(){

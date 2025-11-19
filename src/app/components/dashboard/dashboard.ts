@@ -1,8 +1,9 @@
 import { Component, OnInit, inject, ViewChild, Signal, computed} from '@angular/core';
 import { Card } from "./card/card";
-import { SeedTasks, Task } from '../../services/seed-tasks';
+import { creatingTask, SeedTasks, Task } from '../../services/seed-tasks';
 import { Modal } from "./modal/modal";
 import { CdkDragDrop, DragDropModule, transferArrayItem } from '@angular/cdk/drag-drop';
+import { DataService } from '../../services/data-service';
 
 //dash
 @Component({
@@ -12,7 +13,7 @@ import { CdkDragDrop, DragDropModule, transferArrayItem } from '@angular/cdk/dra
   styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit{
-    
+    dataService = inject(DataService);
     // instanciando o service seedTask 
     private tasksService = inject(SeedTasks);
     tasks = computed(() => this.tasksService.allTasks());
@@ -46,14 +47,6 @@ export class Dashboard implements OnInit{
       return this.tasksService.uid;
     }
 
-    onSaveTask(dadosTask: Task) {        
-        //Criar nova task
-        this.tasksService.addTask(dadosTask);        
-      }
-    updatingTask(dadosTask: Task) {
-      console.log('editando dashboard')         
-    
-    }
     onDrop(event: CdkDragDrop<Task[]>, newStatus: Task['status']) {
       const draggedTask = event.previousContainer.data[event.previousIndex];
 

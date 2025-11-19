@@ -1,16 +1,24 @@
-import { Injectable, signal } from '@angular/core';
-
+import { inject, Injectable, signal } from '@angular/core';
+import { DataService } from './data-service';
 const STORAGE_KEY = 'app_task_manager_tasks_v1'
 let cont = 0; //id's
+
 export interface Task {
-  id: number;
+  id?: number;
   title: string;
   due: string;
   level: 'low' | 'medium' | 'high';
-  desc: string;
+  description: string;
   status: 'todo' | 'doing' | 'done';
 }
 
+export interface creatingTask {
+  title: string;
+  due: string;
+  level: 'low' | 'medium' | 'high';
+  description: string;
+  status: 'todo';
+}
 
 
 @Injectable({
@@ -18,7 +26,7 @@ export interface Task {
 })
 
 export class SeedTasks {
-
+  data = inject(DataService);
   allTasks = signal<Task[]>([]);
 
 
@@ -30,15 +38,10 @@ export class SeedTasks {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
   }
 
-  seederTasks(): Task[] {
-    const tasks : Task[] = [
-      { id: this.uid(), title: 'Ler capítulo 3 de Algoritmos', due: this.addDaysISO(2), level: 'high', desc: 'Priorizar exercícios 3.1-3.5',  status: 'todo' },
-      { id: this.uid(), title: 'Resolver lista de TS', due: this.addDaysISO(5), level: 'medium', desc: 'Atenção a generics', status: 'doing' },
-      { id: this.uid(), title: 'Revisão rápida: HTML/CSS', due: this.addDaysISO(10), level: 'low', desc: '30 minutos', status: 'done' }
-    ]
-    this.parseToJsonTask(tasks)
-    this.allTasks.set(tasks)
-    return tasks
+  seederTasks(): void {
+    this.data.getTasks().subscribe(tasks => {
+      this.allTasks.set(tasks);
+    });
   }
 
   addDaysISO(n:number){
@@ -53,13 +56,16 @@ export class SeedTasks {
     return this.allTasks.asReadonly(); // só leitura fora do service
   }
   
-  addTask(task: Task) {
-    const novaTask = { ...task, id: this.uid() };
-    this.allTasks.update(tasks => {
-      const updated = [...tasks, novaTask];
-      this.saveToStorage(updated);
-      return updated;})
+  addTask(newTask: creatingTask) {
+    this.data.postTasks(newTask);
+    console.log(newTask);
+    //const novaTask = { ...newTask, id: this.uid() };
+    //this.allTasks.update(tasks => {
+     // const updated = [...tasks, novaTask];
+     // this.saveToStorage(updated);
+     // return updated;})
   }
+
   deleteTask(id: number) {
     this.allTasks.update(tasks => {
       const updated = tasks.filter(t => t.id !== id);
@@ -72,7 +78,6 @@ export class SeedTasks {
     this.allTasks.update(tasks => {
       const updated = tasks.map(t => (t.id === task.id ? task : t));
       this.saveToStorage(updated);
-      console.log(updated)
       return updated;
     });
   }
