@@ -26,19 +26,35 @@ export class DataService {
   //Get para buscar lista de tasks
   getTasks(): Observable<Task[]> {
     return this.apiClient.get<Task[]>(this._apiUrl, {headers: this.headers()})
-    .pipe(
-      catchError(this.handleError)
-    )
+      .pipe(
+        catchError(this.handleError)
+      )
   }  
+
+
+  getOneTask(task: Task){
+    return this.apiClient
+  }
+
   
   //Post para criar novos registros
   postTasks(task: Task){
+    delete task.id;
     console.log(task)
     return  this.apiClient.post(this._apiUrl, task, { 
       headers: this.headers() 
     })
     .pipe(
       catchError(this.handleError)
+    )
+  }
+  //Patch para editar campos especificos
+  pathTask(id:number, partial: Partial<Task>): Observable<Task[]>{
+    const newUrl = `${this._apiUrl}?id=eq.${id}`;
+    console.log(partial)
+    return this.apiClient.patch<Task[]>(newUrl, partial, {
+      headers: this.headers()
+    }
     )
   }
 

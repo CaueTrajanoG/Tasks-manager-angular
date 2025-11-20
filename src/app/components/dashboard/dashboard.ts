@@ -12,6 +12,7 @@ import { DataService } from '../../services/data-service';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
+
 export class Dashboard implements OnInit{
     dataService = inject(DataService);
     // instanciando o service seedTask 
@@ -21,9 +22,7 @@ export class Dashboard implements OnInit{
 
     ngOnInit(): void {
       // popula as tasks iniciais se estiver vazio
-      if (this.tasks().length === 0) {
-        this.tasksService.seederTasks();
-      }
+      this.tasksService.seederTasks();      
     }
 
     getTasksByStatus(status: string): Task[]{
@@ -36,11 +35,12 @@ export class Dashboard implements OnInit{
     }
 
     // Chamado quando um card emite o evento (edit)
-    onEditTask(task: any) {
+    onEditTask(task: Task) {
       this.modal.showModal(task);
     }
-    onDeleteTask(task: any){
-      this.tasksService.deleteTask(task.id);
+    onDeleteTask(task: Task){
+      //vou refazer isso
+      //this.tasksService.deleteTask(task.id);
     }
 
     generateId(){

@@ -57,8 +57,9 @@ export class SeedTasks {
   }
   
   addTask(newTask: creatingTask) {
-    this.data.postTasks(newTask);
+    this.data.postTasks(newTask).subscribe();
     console.log(newTask);
+    this.seederTasks();
   }
 
   deleteTask(id: number) {
@@ -71,11 +72,14 @@ export class SeedTasks {
   }
 
   updateTask(task: Task) {
+    this.data.pathTask(8,{title: 'Projeto Etapa II'}).subscribe();
+    /*
     this.allTasks.update(tasks => {
       const updated = tasks.map(t => (t.id === task.id ? task : t));
       this.saveToStorage(updated);
       return updated;
     });
+    */
   }
   
   updatingTask(updatedTask: Task) {
