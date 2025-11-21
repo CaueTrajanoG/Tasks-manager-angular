@@ -16,6 +16,6 @@ export class Card {
     this.edit.emit(this.task);
   }
   deleteTask(){
-    this.delete.emit(this.task);
+    this.delete.emit(this.task.id);
   }
 }

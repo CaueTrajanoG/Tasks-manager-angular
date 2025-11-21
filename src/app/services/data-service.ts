@@ -25,22 +25,16 @@ export class DataService {
 
   //Get para buscar lista de tasks
   getTasks(): Observable<Task[]> {
-    return this.apiClient.get<Task[]>(this._apiUrl, {headers: this.headers()})
-      .pipe(
+    return this.apiClient.get<Task[]>(this._apiUrl,
+      {
+        headers: this.headers()
+      }).pipe(
         catchError(this.handleError)
       )
-  }  
-
-
-  getOneTask(task: Task){
-    return this.apiClient
-  }
-
-  
+  }    
   //Post para criar novos registros
   postTasks(task: Task){
     delete task.id;
-    console.log(task)
     return  this.apiClient.post(this._apiUrl, task, { 
       headers: this.headers() 
     })
@@ -51,10 +45,38 @@ export class DataService {
   //Patch para editar campos especificos
   pathTask(id:number, partial: Partial<Task>): Observable<Task[]>{
     const newUrl = `${this._apiUrl}?id=eq.${id}`;
-    console.log(partial)
     return this.apiClient.patch<Task[]>(newUrl, partial, {
       headers: this.headers()
+    }).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  //Alterar status dos cards
+  alterStatus(id:number, newStatus: string,partial:Partial<Task>): Observable<Task[]>{
+    if(newStatus == 'todo'){
+      partial = { status : 'todo'}
+    }else if(newStatus == 'doing'){
+      partial = { status : 'doing'}            
+    }else{
+      partial = { status : 'done'}           
     }
+    const newUrl = `${this._apiUrl}?id=eq.${id}`;
+    return this.apiClient.patch<Task[]>(newUrl, partial, {
+      headers: this.headers()
+    }).pipe(
+      catchError(this.handleError)
+    )
+    
+  }
+
+  //Delete
+  deleteTask(id:number){
+    const newUrl = `${this._apiUrl}?id=eq.${id}`;
+    return this.apiClient.delete<Task[]>(newUrl, {
+      headers: this.headers()
+    }).pipe(
+      catchError(this.handleError)
     )
   }
 

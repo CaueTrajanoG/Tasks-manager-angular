@@ -12,15 +12,6 @@ export interface Task {
   status: 'todo' | 'doing' | 'done';
 }
 
-export interface creatingTask {
-  title: string;
-  due: string;
-  level: 'low' | 'medium' | 'high';
-  description: string;
-  status: 'todo';
-}
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -56,30 +47,23 @@ export class SeedTasks {
     return this.allTasks.asReadonly(); // só leitura fora do service
   }
   
-  addTask(newTask: creatingTask) {
+  addTask(newTask: Task) {
     this.data.postTasks(newTask).subscribe();
-    console.log(newTask);
     this.seederTasks();
   }
 
   deleteTask(id: number) {
-    this.allTasks.update(tasks => {
-      const updated = tasks.filter(t => t.id !== id);
-      this.saveToStorage(updated);
-      console.log()
-      return updated;
+    //making...
+    this.data.deleteTask(id).subscribe({
+      next: () => console.log("Deletado!"),
+      error: err => console.error(err)
     });
+    this.seederTasks();
   }
 
-  updateTask(task: Task) {
-    this.data.pathTask(8,{title: 'Projeto Etapa II'}).subscribe();
-    /*
-    this.allTasks.update(tasks => {
-      const updated = tasks.map(t => (t.id === task.id ? task : t));
-      this.saveToStorage(updated);
-      return updated;
-    });
-    */
+  updateTask(id:number, partial: Partial<Task>) {
+    this.data.pathTask(id, partial).subscribe();    
+    this.seederTasks();
   }
   
   updatingTask(updatedTask: Task) {

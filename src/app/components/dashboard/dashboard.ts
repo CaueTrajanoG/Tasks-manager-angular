@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, ViewChild, Signal, computed} from '@angular/core';
 import { Card } from "./card/card";
-import { creatingTask, SeedTasks, Task } from '../../services/seed-tasks';
+import { SeedTasks, Task } from '../../services/seed-tasks';
 import { Modal } from "./modal/modal";
 import { CdkDragDrop, DragDropModule, transferArrayItem } from '@angular/cdk/drag-drop';
 import { DataService } from '../../services/data-service';
@@ -38,9 +38,9 @@ export class Dashboard implements OnInit{
     onEditTask(task: Task) {
       this.modal.showModal(task);
     }
-    onDeleteTask(task: Task){
-      //vou refazer isso
-      //this.tasksService.deleteTask(task.id);
+    
+    onDeleteTask(id:number){
+      this.tasksService.deleteTask(id);
     }
 
     generateId(){
@@ -55,7 +55,11 @@ export class Dashboard implements OnInit{
         draggedTask.status = newStatus;
 
         // Atualiza no service (com signal)
-        this.tasksService.updateTask(draggedTask);
+        this.dataService.alterStatus(
+          draggedTask.id!,
+          draggedTask.status as string,
+          draggedTask.status as Partial<Task>
+        ).subscribe();
       }
 
       // Atualiza visualmente entre colunas

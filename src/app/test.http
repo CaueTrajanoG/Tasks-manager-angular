@@ -21,16 +21,19 @@ Content-Type: application/json
 }
 
 ### PATCH
-PATCH {{ endpoint }}?id=eq.8
+PATCH {{ endpoint }}?id=eq.24
 apikey: {{ apiKey }}
 Authorization: Bearer {{ apiKey }}
 Content-Type: application/json
 
 {
-    "status": "doing"
+    "status": "todo"
 }
 
 ### DELETE
-DELETE {{ endpoint }}?id=eq.1
+DELETE {{ endpoint }}?id=eq.9
 apikey: {{ apiKey }}
 Authorization: Bearer {{ apiKey }}
+
+https://veoumsjwfxjadzaosiqf.supabase.co/rest/v1/tasks?id=eq.8
+https://veoumsjwfxjadzaosiqf.supabase.co/rest/v1/tasks?id=eq.8
